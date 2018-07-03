@@ -1,0 +1,5 @@
+open demo@test.rebex.net
+option transfer binary
+get "%1%" C:\
+close
+exit

@@ -1,0 +1,1757 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/3/2018 12:23:49 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="T3ROGER"
+  DTS:CreatorName="LIBERI\roger.lloyd"
+  DTS:DTSID="{F80C6926-9EB5-4942-A6FE-901A4B98A21A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.4100.1"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="OSHENSInterface"
+  DTS:PackageType="5"
+  DTS:VersionBuild="74"
+  DTS:VersionGUID="{43413A40-B4AE-4DF6-A046-9FAD95C4E4DC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Changes File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{42A23918-86CC-4209-9B80-8A6C5F9401DF}"
+      DTS:ObjectName="Changes File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FileFolder] + @[User::ChangesFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2057"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\T3PRAJNA\OSHENSInterface\TEST_AFCDataChangesSince2018-06-26.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="30"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Change"
+              DTS:DTSID="{A334C971-7275-4E32-830E-5BEB4607A4C6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="11"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Org Level"
+              DTS:DTSID="{D5BA82A7-2831-4835-93F0-14BD05B28579}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="40"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Name"
+              DTS:DTSID="{52E7F323-E49E-4DCA-9392-35DFDDA20593}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="2000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Old Name/Parent"
+              DTS:DTSID="{D49D326A-2833-43F4-B085-49BDBC2AB925}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="2000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="New Name/Parent"
+              DTS:DTSID="{94DC2514-CD95-4DA7-9E39-67E2A32A52C7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Change Date"
+              DTS:DTSID="{E5DD778D-709B-4E4D-B8DD-E504C166FF7E}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ElsiConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{515e7bfc-c79a-4911-a92a-02a6109a3343}"
+      DTS:ObjectName="ElsiConnectionOLEDB">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ElsiConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=T3SQL03;Initial Catalog=Elsi_T3;Provider=SQLOLEDB;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Employee File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{91FEA682-AB32-46F7-9018-3135D310B625}"
+      DTS:ObjectName="Employee File Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::FileFolder] + @[User::EmployeeFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="2057"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\T3PRAJNA\OSHENSInterface\TEST_AFCEmployees2018-07-03.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="11"
+              DTS:DataType="130"
+              DTS:ObjectName="Employee No."
+              DTS:DTSID="{6EFF1FCD-2404-4BBA-AFA5-6B1DB0F42EBF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="80"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Firstname"
+              DTS:DTSID="{2888449C-8285-4620-9635-5C494946F139}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="80"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Surname"
+              DTS:DTSID="{8400556D-3077-4645-B1D1-CA8CC0E8B7B5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="80"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Org Level 1"
+              DTS:DTSID="{559F853A-4CF0-4D49-B97A-063D2A6374F2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="80"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Org Level 2"
+              DTS:DTSID="{2345A6B3-BFD6-40CC-8AD8-C070EC81050A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="80"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Org Level 3"
+              DTS:DTSID="{EDBA8475-F9EE-49B0-8250-EA88CB984793}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Email"
+              DTS:DTSID="{56155633-781A-4B11-8613-A098A30D10F1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="6"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LoginID"
+              DTS:DTSID="{1CCFA365-0583-4B3A-BD72-6B53CBD842CC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Grade"
+              DTS:DTSID="{7544E5FC-10EB-4A12-8C1A-AFD8F98FA779}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Work Tel"
+              DTS:DTSID="{94BBC531-C120-4AAF-A954-A9BC514FEC06}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="80"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Address1"
+              DTS:DTSID="{A7B47795-2087-4776-BADB-CB069E660715}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="80"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Address2"
+              DTS:DTSID="{A4199237-4103-45F0-9F99-E813B4D54980}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="80"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Address3"
+              DTS:DTSID="{5FEE4BB8-EDDC-43FE-8A4E-8D45B49C2B05}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="80"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Town"
+              DTS:DTSID="{CB3F6A8D-5D71-49A4-9E53-86C9A5C92A22}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x0009_"
+              DTS:MaximumWidth="80"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="County"
+              DTS:DTSID="{286D952C-A014-4112-9827-E5ADAEB1FE96}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="10"
+              DTS:DataType="130"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Postcode"
+              DTS:DTSID="{9B853BD2-1AFE-4528-98FF-F160D1266D69}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ODSConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6751E518-B65A-4FCC-B72A-EAA85830E9CA}"
+      DTS:ObjectName="ODSConnectionOLEDB">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[User::ODSConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=T3SQL03;Initial Catalog=ODS_T3;Provider=SQLOLEDB;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SMTP Connection Manager]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{C3D4C88B-75A2-43E4-A87C-D1D770B5905A}"
+      DTS:ObjectName="SMTP Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="SmtpServer">@[User::SMTPServer]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=T3SMTP.liberi.org;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E219C66A-DCCC-46D9-8073-320E6A89410C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="AdminEmail">
+      <DTS:VariableValue
+        DTS:DataType="8">roger.lloyd@liberi.org</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E635C210-F30C-486E-8AD8-62FFCE9D1BDB}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;TEST_AFCDataChangesSince&quot; +  SUBSTRING((DT_STR,30, 1252) DATEADD(&quot;dd&quot;, -@[User::DataChangeDays] ,GETDATE()), 1, 10) + &quot;.txt&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ChangesFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">TEST_AFCDataChangesSince2018-06-26.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{23F5308A-D7FF-45D1-BC68-36568A4EEA7C}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;EXEC usp_OSHENS_Key_Data_Changes &quot; +  (DT_WSTR, 10)  @[User::DataChangeDays]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ChangesSQLCommand">
+      <DTS:VariableValue
+        DTS:DataType="8">EXEC usp_OSHENS_Key_Data_Changes 7</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{83426E59-A703-43F9-9E3E-F9B2E42667FE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="DataChangeDays">
+      <DTS:VariableValue
+        DTS:DataType="3">7</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{15D567C7-4BD5-4BF2-AF66-22A0DCB02C22}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ElsiConnectionString">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=T3SQL03;Initial Catalog=Elsi_T3;Provider=SQLOLEDB;Integrated Security=SSPI;Auto Translate=false;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6D43E418-085A-49F8-9343-DB89C3D1B017}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;TEST_AFCEmployees&quot; +  SUBSTRING((DT_STR,30, 1252) GETDATE(), 1, 10) + &quot;.txt&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EmployeeFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">TEST_AFCEmployees2018-07-03.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4C608B4C-ADA1-464B-838C-79267D7E3CA9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">\\T3PRAJNA\OSHENSInterface\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3179472A-5942-47D2-B930-8A530E4D38BA}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FromEmail">
+      <DTS:VariableValue
+        DTS:DataType="8">smtp.biztalk@liberi.org</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1BA7B240-095B-42A7-8E00-4DA3E615B063}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ODSConnectionString">
+      <DTS:VariableValue
+        DTS:DataType="8">Data Source=T3SQL03;Initial Catalog=ODS_T3;Provider=SQLOLEDB;Integrated Security=SSPI;Auto Translate=false;</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{133AC513-6937-4A30-8C1C-BDC9965AA708}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SMTPServer">
+      <DTS:VariableValue
+        DTS:DataType="8">T3SMTP.liberi.org</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8FC1F066-1B60-4122-BF9E-FB3D90B63222}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPexe">
+      <DTS:VariableValue
+        DTS:DataType="8">\\T3PRAJNA\OSHENSInterface\WinSCP.com</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F9FBA81E-D0FD-4E93-A90A-53773AD667D4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="WinSCPScriptFile">
+      <DTS:VariableValue
+        DTS:DataType="8">\\T3PRAJNA\OSHENSInterface\WinSCPScript.txt</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Export Employees"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{11634963-C7B4-41AE-A856-C96871E4013E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Export Employees"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Export Employees.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{D508A457-FD59-4B0D-BA4C-31F735BF0E43}"
+          DTS:EventID="419481764"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{CDC36B49-D23F-459B-A1FE-FF689317385C}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Export Employees\Employees text file"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="2057"
+              name="Employees text file">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export Employees\Employees text file.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Employee File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Employee File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Employee No.]"
+                      cachedDataType="wstr"
+                      cachedLength="11"
+                      cachedName="Employee No."
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Employee No.]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Employee No.]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Firstname]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Firstname"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Firstname]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Firstname]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Surname]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Surname"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Surname]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Surname]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Org Level 1]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Org Level 1"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Org Level 1]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Org Level 1]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Org Level 2]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Org Level 2"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Org Level 2]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Org Level 2]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Org Level 3]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Org Level 3"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Org Level 3]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Org Level 3]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[LoginID]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="LoginID"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[LoginID]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[LoginID]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Grade]"
+                      cachedDataType="i4"
+                      cachedName="Grade"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Grade]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Grade]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Work Tel]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Work Tel"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Work Tel]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Work Tel]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Address1]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Address1"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Address1]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Address1]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Address2]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Address2"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Address2]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Address2]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Address3]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Address3"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Address3]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Address3]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Town]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="Town"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Town]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Town]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[County]"
+                      cachedDataType="wstr"
+                      cachedLength="80"
+                      cachedName="County"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[County]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[County]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Postcode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Postcode"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Postcode]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Postcode]" />
+                    <inputColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].Columns[Email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Email"
+                      externalMetadataColumnId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Email]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Email]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Employee No.]"
+                      dataType="wstr"
+                      length="11"
+                      name="Employee No." />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Firstname]"
+                      dataType="wstr"
+                      length="80"
+                      name="Firstname" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Surname]"
+                      dataType="wstr"
+                      length="80"
+                      name="Surname" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Org Level 1]"
+                      dataType="wstr"
+                      length="80"
+                      name="Org Level 1" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Org Level 2]"
+                      dataType="wstr"
+                      length="80"
+                      name="Org Level 2" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Org Level 3]"
+                      dataType="wstr"
+                      length="80"
+                      name="Org Level 3" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[LoginID]"
+                      dataType="wstr"
+                      length="6"
+                      name="LoginID" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Grade]"
+                      dataType="i4"
+                      name="Grade" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Work Tel]"
+                      dataType="wstr"
+                      length="20"
+                      name="Work Tel" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Address1]"
+                      dataType="wstr"
+                      length="80"
+                      name="Address1" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Address2]"
+                      dataType="wstr"
+                      length="80"
+                      name="Address2" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Address3]"
+                      dataType="wstr"
+                      length="80"
+                      name="Address3" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Town]"
+                      dataType="wstr"
+                      length="80"
+                      name="Town" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[County]"
+                      dataType="wstr"
+                      length="80"
+                      name="County" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Postcode]"
+                      dataType="wstr"
+                      length="10"
+                      name="Postcode" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input].ExternalColumns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Email" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Export Employees\usp_OSHENS_GetEmployees"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="usp_OSHENS_GetEmployees"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC usp_OSHENS_GetEmployees</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export Employees\usp_OSHENS_GetEmployees.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ODSConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[ODSConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Employee No.]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Employee No.]"
+                      length="11"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Employee No.]"
+                      name="Employee No."
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Firstname]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Firstname]"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Firstname]"
+                      name="Firstname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Surname]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Surname]"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Surname]"
+                      name="Surname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Org Level 1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Org Level 1]"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Org Level 1]"
+                      name="Org Level 1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Org Level 2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Org Level 2]"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Org Level 2]"
+                      name="Org Level 2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Org Level 3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Org Level 3]"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Org Level 3]"
+                      name="Org Level 3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[LoginID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[LoginID]"
+                      length="6"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[LoginID]"
+                      name="LoginID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Grade]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Grade]"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Grade]"
+                      name="Grade"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Work Tel]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Work Tel]"
+                      length="20"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Work Tel]"
+                      name="Work Tel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Address1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Address1]"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Address1]"
+                      name="Address1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Address2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Address2]"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Address2]"
+                      name="Address2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Address3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Address3]"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Address3]"
+                      name="Address3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Town]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Town]"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Town]"
+                      name="Town"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[County]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[County]"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[County]"
+                      name="County"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Postcode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Postcode]"
+                      length="10"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Postcode]"
+                      name="Postcode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                      length="100"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].Columns[Email]"
+                      name="Email"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Employee No.]"
+                      dataType="wstr"
+                      length="11"
+                      name="Employee No." />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Firstname]"
+                      dataType="wstr"
+                      length="80"
+                      name="Firstname" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Surname]"
+                      dataType="wstr"
+                      length="80"
+                      name="Surname" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Org Level 1]"
+                      dataType="wstr"
+                      length="80"
+                      name="Org Level 1" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Org Level 2]"
+                      dataType="wstr"
+                      length="80"
+                      name="Org Level 2" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Org Level 3]"
+                      dataType="wstr"
+                      length="80"
+                      name="Org Level 3" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[LoginID]"
+                      dataType="wstr"
+                      length="6"
+                      name="LoginID" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Grade]"
+                      dataType="i4"
+                      name="Grade" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Work Tel]"
+                      dataType="wstr"
+                      length="20"
+                      name="Work Tel" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Address1]"
+                      dataType="wstr"
+                      length="80"
+                      name="Address1" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Address2]"
+                      dataType="wstr"
+                      length="80"
+                      name="Address2" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Address3]"
+                      dataType="wstr"
+                      length="80"
+                      name="Address3" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Town]"
+                      dataType="wstr"
+                      length="80"
+                      name="Town" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[County]"
+                      dataType="wstr"
+                      length="80"
+                      name="County" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Postcode]"
+                      dataType="wstr"
+                      length="10"
+                      name="Postcode" />
+                    <externalMetadataColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Email" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Employee No.]"
+                      dataType="wstr"
+                      length="11"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Employee No.]"
+                      name="Employee No." />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Firstname]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Firstname]"
+                      name="Firstname" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Surname]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Surname]"
+                      name="Surname" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Org Level 1]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Org Level 1]"
+                      name="Org Level 1" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Org Level 2]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Org Level 2]"
+                      name="Org Level 2" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Org Level 3]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Org Level 3]"
+                      name="Org Level 3" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Email]"
+                      name="Email" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[LoginID]"
+                      dataType="wstr"
+                      length="6"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[LoginID]"
+                      name="LoginID" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Grade]"
+                      dataType="i4"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Grade]"
+                      name="Grade" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Work Tel]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Work Tel]"
+                      name="Work Tel" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Address1]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Address1]"
+                      name="Address1" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Address2]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Address2]"
+                      name="Address2" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Address3]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Address3]"
+                      name="Address3" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Town]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Town]"
+                      name="Town" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[County]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[County]"
+                      name="County" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Postcode]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[Postcode]"
+                      name="Postcode" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Export Employees.Paths[OLE DB Source Output]"
+              endId="Package\Export Employees\Employees text file.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Export Employees\usp_OSHENS_GetEmployees.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Export Key Data Changes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5D8FD6B4-FA33-48CF-97F9-15668DEDBF9D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Export Key Data Changes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Export Key Data Changes\Flat File Destination"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="2057"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export Key Data Changes\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Changes File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Changes File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].Columns[Change]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="Change"
+                      externalMetadataColumnId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Change]"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Change]" />
+                    <inputColumn
+                      refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].Columns[Org Level]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="11"
+                      cachedName="Org Level"
+                      externalMetadataColumnId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Org Level]"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Org Level]" />
+                    <inputColumn
+                      refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].Columns[Name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="40"
+                      cachedName="Name"
+                      externalMetadataColumnId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].Columns[Change Date]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Change Date"
+                      externalMetadataColumnId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Change Date]"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Change Date]" />
+                    <inputColumn
+                      refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].Columns[Old Name/Parent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="Old Name/Parent"
+                      externalMetadataColumnId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Old Name/Parent]"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Old Name/Parent]" />
+                    <inputColumn
+                      refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].Columns[New Name/Parent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2000"
+                      cachedName="New Name/Parent"
+                      externalMetadataColumnId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[New Name/Parent]"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[New Name/Parent]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Change]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Change" />
+                    <externalMetadataColumn
+                      refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Org Level]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="Org Level" />
+                    <externalMetadataColumn
+                      refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Change Date]"
+                      dataType="wstr"
+                      length="10"
+                      name="Change Date" />
+                    <externalMetadataColumn
+                      refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Old Name/Parent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Old Name/Parent" />
+                    <externalMetadataColumn
+                      refId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[New Name/Parent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="New Name/Parent" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Export Key Data Changes\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::ChangesSQLCommand</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Export Key Data Changes\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ElsiConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[ElsiConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Change]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Change]"
+                      length="30"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Change]"
+                      name="Change"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Org Level]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Org Level]"
+                      length="11"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Org Level]"
+                      name="Org Level"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      length="40"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Old Name/Parent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Old Name/Parent]"
+                      length="2000"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Old Name/Parent]"
+                      name="Old Name/Parent"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[New Name/Parent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[New Name/Parent]"
+                      length="2000"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[New Name/Parent]"
+                      name="New Name/Parent"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Change Date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Change Date]"
+                      length="10"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].Columns[Change Date]"
+                      name="Change Date"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Change]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Change" />
+                    <externalMetadataColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Org Level]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      name="Org Level" />
+                    <externalMetadataColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Old Name/Parent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="Old Name/Parent" />
+                    <externalMetadataColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[New Name/Parent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      name="New Name/Parent" />
+                    <externalMetadataColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Change Date]"
+                      dataType="wstr"
+                      length="10"
+                      name="Change Date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Change]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Change]"
+                      name="Change" />
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Org Level]"
+                      codePage="1252"
+                      dataType="str"
+                      length="11"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Org Level]"
+                      name="Org Level" />
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="40"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Old Name/Parent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Old Name/Parent]"
+                      name="Old Name/Parent" />
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[New Name/Parent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2000"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[New Name/Parent]"
+                      name="New Name/Parent" />
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Change Date]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Change Date]"
+                      name="Change Date" />
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Export Key Data Changes.Paths[OLE DB Source Output]"
+              endId="Package\Export Key Data Changes\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Export Key Data Changes\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Send both Files via sftp"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:Description="Execute Process Task"
+      DTS:DTSID="{7F258B8A-A50A-4277-99AE-D80CD3C2F7C5}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Send both Files via sftp"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Arguments">"/script=" + @[User::WinSCPScriptFile] + " /parameter " +  @[User::FileFolder] +  @[User::ChangesFileName] + " " +  @[User::FileFolder] +  @[User::EmployeeFileName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="Executable">@[User::WinSCPexe]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="\\T3PRAJNA\OSHENSInterface\WinSCP.com"
+          Arguments="/script=\\T3PRAJNA\OSHENSInterface\WinSCPScript.txt /parameter \\T3PRAJNA\OSHENSInterface\TEST_AFCDataChangesSince2018-06-26.txt \\T3PRAJNA\OSHENSInterface\TEST_AFCEmployees2018-07-03.txt" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{194A41E0-F038-4691-882C-4C83E84711AE}"
+      DTS:From="Package\Export Key Data Changes"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Export Employees" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{E9CEA272-A1C4-4815-9F7F-9F9C757D6D9C}"
+      DTS:From="Package\Export Employees"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Send both Files via sftp" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{7B91837E-274C-4594-BCC5-F46FA7B9FC0A}"
+      DTS:EventID="419714028"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{D77A6E41-1092-4F99-B57F-A3B7CCB1293C}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Send Error Email"
+          DTS:CreationName="Microsoft.SendMailTask"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{BFAAD8DC-4711-44EB-8D0E-E1DFB6ADDBA7}"
+          DTS:ExecutableType="Microsoft.SendMailTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Error Email"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="FromLine">@[User::FromEmail]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">"Error ocurred trying to export files to " +  @[User::FileFolder] + "
+
+Error Description: " +  @[System::ErrorDescription]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="ToLine">@[User::AdminEmail]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{C3D4C88B-75A2-43E4-A87C-D1D770B5905A}"
+              SendMailTask:From="smtp.biztalk@liberi.org"
+              SendMailTask:To="roger.lloyd@liberi.org"
+              SendMailTask:Subject="Error in OSHENS Employee file export"
+              SendMailTask:MessageSource="Error ocurred trying to export files to \\T3PRAJNA\OSHENSInterface\&#xA;&#xA;Error Description: " xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Export Employees"
+          TopLeft="123.166666666667,175.5" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\Export Key Data Changes"
+          TopLeft="105.666666666667,73.5" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Send both Files via sftp"
+          TopLeft="110.666666666667,279" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="205.916666666667,115.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="205.916666666667,217.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61.5"
+              Start="0,0"
+              End="0,54">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="160,42"
+          Id="Package.EventHandlers[OnError]\Send Error Email"
+          TopLeft="501,180" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\Export Employees">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="216,42"
+          Id="Package\Export Employees\usp_OSHENS_GetEmployees"
+          TopLeft="139.5,97.5" />
+        <NodeLayout
+          Size="170,42"
+          Id="Package\Export Employees\Employees text file"
+          TopLeft="161.5,201.5" />
+        <EdgeLayout
+          Id="Package\Export Employees.Paths[OLE DB Source Output]"
+          TopLeft="247,139.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Export Employees\usp_OSHENS_GetEmployees">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Export Key Data Changes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Export Key Data Changes\OLE DB Source"
+          TopLeft="420,94" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Export Key Data Changes\Flat File Destination"
+          TopLeft="416,249" />
+        <EdgeLayout
+          Id="Package\Export Key Data Changes.Paths[OLE DB Source Output]"
+          TopLeft="499.5,136">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,113"
+              Start="0,0"
+              End="0,105.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,105.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Export Key Data Changes\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
